@@ -18,7 +18,6 @@ class OperationsTest extends TestCase
 
   public function testSumWithNullValues()
   {
-    //$this->assertEquals(NULL, $this->op->sum(NULL, NULL));
     $this->expectException(InvalidArgumentException::class);
     $this->op->sum(NULL, NULL);
   }
