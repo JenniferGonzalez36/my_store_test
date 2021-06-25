@@ -35,6 +35,7 @@ a:hover {
   min-height: 160px;
   /*border-bottom: 5px solid darkslategray;*/
   box-shadow: 0 10px 8px gray;
+  margin-bottom: 20px;
 }
 
 #logo {
@@ -81,4 +82,55 @@ a:hover {
 
 .product img {
   width: 100px;
+}
+
+#menu {
+  clear: both;
+  background-color: white;
+  min-height: 55px;
+  border-top: 1px solid deepskyblue;
+  border-bottom: 5px solid deepskyblue;
+  margin-bottom: 25px;
+}
+
+#menu ul {
+  list-style: none;
+  margin: 0 auto;
+  margin-left: 25px;
+}
+
+#menu ul li {
+  line-height: 55px;
+  float: left;
+  border-right: 2px solid orangered;
+}
+
+#menu ul li:hover {
+  transform: scale(1.2, 1.2);
+  border-right: 2px solid #ff450000;
+}
+
+#menu ul li:first-child {
+  border-left: 2px solid orangered;
+}
+
+#menu ul li:first-child:hover {
+  border-left: 2px solid #ff450000;
+}
+
+#menu a {
+  background: white;
+  display: block;
+  padding: 0 16px;
+  font-family: Helvetica, Tahoma, Arial;
+  font-weight: bold;
+  color: orangered;
+  /*transition: background 100ms;*/
+}
+
+#menu a:hover {
+  background: rgba(251, 255, 100);
+  color: orangered;
+  text-shadow: 0 0 1px white;
+  outline: 12px outset #00bfff99;
 }
