@@ -5,8 +5,11 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mi tienda de camisetas</title>
+  <title>Mi tienda</title>
   <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -14,8 +17,11 @@
     <!-- CABECERA -->
     <header id="header">
       <div id="logo">
-        <img src="assets/img/T-shirt.png" alt="Camiseta-Logo">
-        <a href="index.php">Tienda de camisetas</a>
+        <a href="index.php">
+          <img src="assets/img/T-shirt.png" alt="Camiseta-Logo">
+        </a>
+
+        <a href="index.php" id="title">Mi tienda</a>
       </div>
     </header>
     <!-- MENU -->
