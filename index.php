@@ -13,54 +13,35 @@
 </head>
 
 <body>
-  <div id="container">
-    <!-- CABECERA -->
-    <header id="header">
-      <div id="logo">
-        <a href="index.php">
-          <img src="assets/img/T-shirt.png" alt="Camiseta-Logo">
-        </a>
+  <header id="header">
+    <div id="logo">
+      <a href="index.php">
+        <img src="assets/img/T-shirt.png" alt="Camiseta-Logo">
+      </a>
 
-        <a href="index.php" id="title">Mi tienda</a>
-      </div>
-    </header>
-    <!-- MENU -->
-    <nav id="menu">
+      <a href="index.php" id="title">Mi tienda.</a>
+    </div>
+    <nav id="nav-main-menu">
       <ul>
         <li>
           <a href="#">Inicio</a>
         </li>
         <li>
-          <a href="#">Categoria1</a>
+          <a href="#">Categorias</a>
         </li>
         <li>
-          <a href="#">Categoria2</a>
+          <a href="#">Mi cuenta</a>
         </li>
         <li>
-          <a href="#">Categoria3</a>
-        </li>
-        <li>
-          <a href="#">Categoria4</a>
+          <a href="#" class="Shopping_cart-icon">🛒</a>
         </li>
       </ul>
     </nav>
-    <div id="content">
-      <!-- BARRA LATERAL -->
-      <aside id="aside_content">
-        <div id="login" class="block_aside">
-          <form action="#" method="POST">
-            <label for="email">Email</label>
-            <input type="email" name="email">
-            <label for="password">Contraseña</label>
-            <input type="password" name="password">
-            <input type="submit" value="Ingresar">
-          </form>
-          <a href="#">Mis pedidos</a>
-          <a href="#">Gestionar pedidos</a>
-          <a href="#">Gestionar categorias</a>
-        </div>
-      </aside>
+  </header>
 
+  <div id="container">
+
+    <div id="content">
       <!-- CONTENIDO CENTRAL -->
       <div id="main_content">
         <div class="product">
@@ -85,6 +66,9 @@
         </div>
       </div>
     </div>
+
+
+
     <!-- PIE DE PÁGINA -->
     <footer id="footer">
       <p>Developed by Jennifer González &copy; - 2021</p>
