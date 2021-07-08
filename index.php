@@ -13,7 +13,7 @@
 </head>
 
 <body>
-  <header id="header">
+  <header>
     <div id="logo">
       <a href="index.php">
         <img src="assets/img/T-shirt.png" alt="Camiseta-Logo">
@@ -39,41 +39,34 @@
     </nav>
   </header>
 
-  <div id="container">
+  <div id="main-container">
+    <div class="product-cards-container">
+      <div class="product-card">
+        <img src="assets/img/T-shirt.png" alt="Camiseta">
+        <h2 class="product-name">Camiseta Azul claro</h2>
+        <p class="product-price">$189.99</p>
+        <a href="#">Añadir al carrito</a>
+      </div>
 
-    <div id="content">
-      <!-- CONTENIDO CENTRAL -->
-      <div id="main_content">
-        <div class="product">
-          <img src="assets/img/T-shirt.png">
-          <h2>Camiseta Azul claro</h2>
-          <p>$200</p>
-          <a href="#">Añadir al carrito</a>
-        </div>
+      <div class="product-card">
+        <img src="assets/img/T-shirt.png" alt="Camiseta">
+        <h2 class="product-name">Camiseta Azul cielo</h2>
+        <p class="product-price">$179.99</p>
+        <a href="#">Añadir al carrito</a>
+      </div>
 
-        <div class="product">
-          <img src="assets/img/T-shirt.png">
-          <h2>Camiseta Azul cielo</h2>
-          <p>$190</p>
-          <a href="#">Añadir al carrito</a>
-        </div>
-
-        <div class="product">
-          <img src="assets/img/T-shirt.png">
-          <h2>Camiseta Celeste</h2>
-          <p>$220</p>
-          <a href="#">Añadir al carrito</a>
-        </div>
+      <div class="product-card">
+        <img src="assets/img/T-shirt.png" alt="Camiseta">
+        <h2 class="product-name">Camiseta Celeste</h2>
+        <p class="product-price">$219.99</p>
+        <a href="#">Añadir al carrito</a>
       </div>
     </div>
-
-
-
-    <!-- PIE DE PÁGINA -->
-    <footer id="footer">
-      <p>Developed by Jennifer González &copy; - 2021</p>
-    </footer>
   </div>
+
+  <footer id="footer">
+    <a href="https://github.com/JenniferGonzalez36" target="_blank">Developed by &copy; Jennifer González - 2021</a>
+  </footer>
 </body>
 
 </html>
