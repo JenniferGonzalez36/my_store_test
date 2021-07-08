@@ -27,7 +27,7 @@
           <a href="#">Inicio</a>
         </li>
         <li>
-          <a href="#">Categorias</a>
+          <button>Categorías &#9660</button>
         </li>
         <li>
           <a href="#">Mi cuenta</a>
@@ -40,27 +40,34 @@
   </header>
 
   <div id="main-container">
-    <div class="product-cards-container">
-      <div class="product-card">
-        <img src="assets/img/T-shirt.png" alt="Camiseta">
-        <h2 class="product-name">Camiseta Azul claro</h2>
-        <p class="product-price">$189.99</p>
-        <a href="#">Añadir al carrito</a>
+    <div class="products-container">
+      <div class="product-container">
+        <div class="product-card">
+          <img src="assets/img/T-shirt.png" alt="Camiseta">
+          <h2 class="product-name">Camiseta Azul claro</h2>
+          <p class="product-price">$189.99</p>
+        </div>
+        <button class="add-cart-button">Añadir al carrito</button>
       </div>
 
-      <div class="product-card">
-        <img src="assets/img/T-shirt.png" alt="Camiseta">
-        <h2 class="product-name">Camiseta Azul cielo</h2>
-        <p class="product-price">$179.99</p>
-        <a href="#">Añadir al carrito</a>
+      <div class="product-container">
+        <div class="product-card">
+          <img src="assets/img/T-shirt.png" alt="Camiseta">
+          <h2 class="product-name">Camiseta Azul cielo</h2>
+          <p class="product-price">$179.99</p>
+        </div>
+        <button class="add-cart-button">Añadir al carrito</button>
       </div>
 
-      <div class="product-card">
-        <img src="assets/img/T-shirt.png" alt="Camiseta">
-        <h2 class="product-name">Camiseta Celeste</h2>
-        <p class="product-price">$219.99</p>
-        <a href="#">Añadir al carrito</a>
+      <div class="product-container">
+        <div class="product-card">
+          <img src="assets/img/T-shirt.png" alt="Camiseta">
+          <h2 class="product-name">Camiseta Celeste</h2>
+          <p class="product-price">$219.99</p>
+        </div>
+        <button class="add-cart-button">Añadir al carrito</button>
       </div>
+
     </div>
   </div>
 
