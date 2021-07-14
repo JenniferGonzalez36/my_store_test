@@ -6,6 +6,7 @@
 
 :root {
   --orange-color: #ff4500;
+  --lightblue-color: #daf6ff;
   --blue-color: #00bfff;
   --yellow-color: #fbff64;
   --green-color: #1fbb00;
@@ -13,6 +14,7 @@
   --darkblue-color: #037;
   --gray-color: #ccc;
   --white-color: #fff;
+  --red-color: #fc143c;
 }
 
 body {
@@ -25,6 +27,7 @@ body {
 }
 
 header {
+  z-index: 100;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -41,9 +44,12 @@ header {
 #logo {
   display: flex;
   padding: 15px 0 15px 15px;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 #logo img {
+  margin-right: 40px;
   border-radius: 5px;
   height: 70px;
   box-shadow: -2px 0 10px #ff08, 0 -2px 10px #ff08, -3px -3px 10px #ff08,
@@ -65,13 +71,12 @@ header {
 
 #title {
   white-space: nowrap;
-  font-size: 2.2em;
+  font-size: 2.45em;
   letter-spacing: 0.2em;
   font-family: "Pacifico", cursive, Verdana, Arial, Helvetica, sans-serif;
   color: var(--blue-color);
   font-weight: bold;
   text-decoration: none;
-  margin-left: 40px;
   text-shadow: 1px 3px 1px darkslategray;
   transition: text-shadow 300ms, color 300ms, transform 300ms;
 }
@@ -92,6 +97,8 @@ header {
   display: flex;
   padding: 15px 15px 15px 0;
   list-style: none;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 #nav-main-menu ul li {
@@ -152,13 +159,32 @@ a:active {
   padding: 10px 0;
   background-color: #f6f6f6cc;
   width: 93%;
+  flex-grow: 1;
+  min-height: 80px;
+  box-shadow: 0 0 20px var(--blue-color);
 }
 
-.products-container {
+h2 {
+  font-family: "Pacifico", cursive, Verdana, Arial, Helvetica, sans-serif;
+  color: var(--darkgreen-color);
+  font-size: 1.4em;
+  text-transform: uppercase;
+}
+
+p {
+  padding: 10px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 1.1em;
+}
+
+.dashed-block {
   border-top: 5px dashed var(--blue-color);
   border-bottom: 5px dashed var(--blue-color);
   padding: 10px 0;
   margin: 10px 5px;
+}
+
+.products-container {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
@@ -219,7 +245,7 @@ a:active {
   cursor: pointer;
   white-space: nowrap;
   overflow: hidden;
-  transition: background-color 100ms;
+  transition: background-color 100ms border 1s;
 }
 
 .add-cart-button:hover {
@@ -246,6 +272,7 @@ a:active {
 }
 
 footer {
+  z-index: 80;
   background: linear-gradient(
     90deg,
     rgba(230, 230, 230, 1) 0%,
@@ -258,4 +285,101 @@ footer {
   padding: 20px;
   margin-top: auto;
   box-shadow: 0 -10px 8px gray;
+}
+
+.user-register-block {
+  margin: 10px;
+  border-radius: 10px;
+  border: 2px solid var(--blue-color);
+  padding: 10px 20px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  background: radial-gradient(
+    circle,
+    var(--white-color) 0%,
+    var(--lightblue-color) 100%
+  );
+  box-shadow: 0 0 5px var(--gray-color);
+}
+
+.user-register-block label {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  color: var(--orange-color);
+  font-size: 1.25em;
+}
+
+.user-register-block .input-data {
+  margin-bottom: 10px;
+  outline: none;
+  border: 3px dashed var(--blue-color);
+  padding: 8px 5px;
+  color: var(--blue-color);
+  font-size: 1.12em;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.user-register-block .input-data:hover {
+  border-color: var(--orange-color);
+  background-color: var(--lightblue-color);
+}
+
+.user-register-block .input-data:focus {
+  border-color: var(--orange-color);
+  color: var(--darkgreen-color);
+  background-color: var(--yellow-color);
+}
+
+.user-register-block input[type="submit"] {
+  color: var(--white-color);
+  background-color: var(--green-color);
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  transition: background-color 50ms;
+  padding: 15px;
+  border: none;
+  border-radius: 3px;
+  align-self: center;
+  cursor: pointer;
+  transition: background-color 100ms border 1s;
+}
+
+.user-register-block input[type="submit"]:hover {
+  background-color: var(--blue-color);
+}
+
+.user-register-block input[type="submit"]:active {
+  background-color: var(--orange-color);
+}
+
+.color-red {
+  color: var(--red-color);
+}
+
+.color-green {
+  color: var(--green-color);
+}
+
+.centered-content {
+  display: flex;
+  justify-content: center;
+}
+
+.centered {
+  text-align: center;
+}
+
+.decorated::before {
+  content: "- ";
+}
+
+.decorated::after {
+  content: " -";
+}
+
+.growed {
+  font-weight: bold;
+  font-size: 1.3em;
 }

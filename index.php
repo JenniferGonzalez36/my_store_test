@@ -1,79 +1,41 @@
-<!DOCTYPE html>
-<html lang="es">
+<?php
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mi tienda</title>
-  <link rel="stylesheet" href="assets/css/styles.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
-</head>
+session_start();
 
-<body>
-  <header>
-    <div id="logo">
-      <a href="index.php">
-        <img src="assets/img/T-shirt.png" alt="Camiseta-Logo">
-      </a>
+require_once 'helpers/HTMLBuilder.php';
+require_once 'helpers/Utils.php';
+require_once 'config/parameters.php';
+require_once 'autoload.php';
+require_once 'views/layout/htmlFirstPart.php';
+require_once 'config/Database.php';
 
-      <a href="index.php" id="title">Mi tienda.</a>
-    </div>
-    <nav id="nav-main-menu">
-      <ul>
-        <li>
-          <a href="#">Inicio</a>
-        </li>
-        <li>
-          <button>Categorías &#9660</button>
-        </li>
-        <li>
-          <a href="#">Mi cuenta</a>
-        </li>
-        <li>
-          <a href="#" class="Shopping_cart-icon">🛒</a>
-        </li>
-      </ul>
-    </nav>
-  </header>
 
-  <div id="main-container">
-    <div class="products-container">
-      <div class="product-container">
-        <div class="product-card">
-          <img src="assets/img/T-shirt.png" alt="Camiseta">
-          <h2 class="product-name">Camiseta Azul claro</h2>
-          <p class="product-price">$189.99</p>
-        </div>
-        <button class="add-cart-button">Añadir al carrito</button>
-      </div>
+$nameController;
+$action;
 
-      <div class="product-container">
-        <div class="product-card">
-          <img src="assets/img/T-shirt.png" alt="Camiseta">
-          <h2 class="product-name">Camiseta Azul cielo</h2>
-          <p class="product-price">$179.99</p>
-        </div>
-        <button class="add-cart-button">Añadir al carrito</button>
-      </div>
+if (isset($_GET['controller']))
+  $nameController = $_GET['controller'] . 'Controller';
+else $nameController = defaultController;
 
-      <div class="product-container">
-        <div class="product-card">
-          <img src="assets/img/T-shirt.png" alt="Camiseta">
-          <h2 class="product-name">Camiseta Celeste</h2>
-          <p class="product-price">$219.99</p>
-        </div>
-        <button class="add-cart-button">Añadir al carrito</button>
-      </div>
+if (isset($_GET['action'])) $action = $_GET['action'];
+else {
+  if (strcmp($nameController, defaultController) === 0) $action = defaultAction;
+  else $action = defaultErrorAction;
+}
 
-    </div>
-  </div>
+if (class_exists($nameController)) {
+  $controller = new $nameController();
+  if (method_exists($controller, $action)) {
+    if (strcasecmp($nameController, 'errorController') === 0 && strcasecmp($action, 'errorMessage') === 0) showErrorPage('Pero has encontrado un Easter Egg :D');
+    else $controller->$action();
+  } else showErrorPage('La función es incorrecta.');
+} else showErrorPage('La sección es incorrecta.');
 
-  <footer id="footer">
-    <a href="https://github.com/JenniferGonzalez36" target="_blank">Developed by &copy; Jennifer González - 2021</a>
-  </footer>
-</body>
+function showErrorPage(string $reason = NULL)
+{
+  $action = defaultErrorAction;
+  $error = new ErrorController();
+  echo $error->$action($reason);
+}
 
-</html>
+require_once 'views/layout/htmlLastPart.php';

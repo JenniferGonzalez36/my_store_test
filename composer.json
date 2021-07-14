@@ -1,7 +1,10 @@
 {
   "autoload": {
     "classmap": [
-      "src/"
+      "config/",
+      "controllers/",
+      "models",
+      "helpers/"
     ]
   },
   "require-dev": {
