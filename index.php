@@ -1,6 +1,7 @@
 <?php
 
-session_start();
+if (!isset($_SESSION))
+  session_start();
 
 require_once 'helpers/HTMLBuilder.php';
 require_once 'helpers/Utils.php';

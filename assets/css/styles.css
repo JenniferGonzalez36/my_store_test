@@ -331,6 +331,19 @@ footer {
   border-color: var(--orange-color);
   color: var(--darkgreen-color);
   background-color: var(--yellow-color);
+  text-shadow: none;
+}
+
+.user-register-block .input-data::placeholder {
+  color: #bbc;
+  font-weight: normal;
+  letter-spacing: 0.15em;
+  font-style: italic;
+  text-shadow: none;
+}
+
+.user-register-block .input-data:focus::placeholder {
+  color: transparent;
 }
 
 .user-register-block input[type="submit"] {
