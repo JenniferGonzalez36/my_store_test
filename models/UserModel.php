@@ -54,32 +54,32 @@ class UserModel
 
   public function setName($name)
   {
-    $this->name = $this->db->real_escape_string(trim($name));
+    $this->name = $this->validateValue($name, 100);
   }
 
   public function setSurname($surname)
   {
-    $this->surname = $this->db->real_escape_string(trim($surname));
+    $this->surname = $this->validateValue($surname);
   }
 
   public function setEmail($email)
   {
-    $this->email = $this->db->real_escape_string(trim($email));
+    $this->email = $this->validateValue($email);
   }
 
   public function setPassword($password)
   {
-    $this->password = password_hash($this->db->real_escape_string(trim($password)), PASSWORD_BCRYPT, ['cost' => 4]);
+    $this->password = $this->validateValue($password) ? password_hash($this->validateValue($password), PASSWORD_BCRYPT, ['cost' => 4]) : false;
   }
 
   public function setRole($role)
   {
-    $this->role = $this->db->real_escape_string(trim($role));
+    $this->role = $this->validateValue($role, 20);;
   }
 
   public function setImage($image)
   {
-    $this->image = $this->db->real_escape_string(trim($image));
+    $this->image = $this->validateValue($image);;
   }
 
   public function save()
@@ -115,5 +115,10 @@ class UserModel
     $result = 'NULL';
     if ($value) $result = '"' . $value . '"';
     return $result;
+  }
+
+  private function validateValue($value, $maxLength = 255)
+  {
+    return strlen($this->db->real_escape_string(trim($value))) < $maxLength ? $this->db->real_escape_string(trim($value)) : false;
   }
 }

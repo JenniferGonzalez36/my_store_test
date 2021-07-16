@@ -4,6 +4,14 @@ use PHPUnit\Framework\TestCase;
 
 class UserModelTest extends TestCase
 {
+
+  private function getATestText($cuantityOfChars)
+  {
+    $result = '';
+    for ($i = 0; $i < $cuantityOfChars; $i++) $result .= 'a';
+    return $result;
+  }
+
   /* 
     ##    ##    ###    ##     ## ######## 
     ###   ##   ## ##   ###   ### ##       
@@ -67,6 +75,20 @@ class UserModelTest extends TestCase
     $object = new UserModel();
     $object->setName("\\n \\r \\ ' \"");
     $this->assertEquals("\\\\n \\\\r \\\ \\' \\\"", $object->getName());
+  }
+
+  public function testUserModelNameReturnsTheLimitStringWithALimitText()
+  {
+    $object = new UserModel();
+    $object->setName($this->getATestText(99));
+    $this->assertEquals($this->getATestText(99), $object->getName());
+  }
+
+  public function testUserModelNameReturnsFalseWithLargeText()
+  {
+    $object = new UserModel();
+    $object->setName($this->getATestText(100));
+    $this->assertEquals(false, $object->getName());
   }
 
   /*
@@ -134,6 +156,20 @@ class UserModelTest extends TestCase
     $this->assertEquals("\\\\n \\\\r \\\ \\' \\\"", $object->getSurname());
   }
 
+  public function testUserModelSurnameReturnsTheLimitStringWithALimitText()
+  {
+    $object = new UserModel();
+    $object->setSurname($this->getATestText(254));
+    $this->assertEquals($this->getATestText(254), $object->getSurname());
+  }
+
+  public function testUserModelSurnameReturnsFalseWithLargeText()
+  {
+    $object = new UserModel();
+    $object->setSurname($this->getATestText(255));
+    $this->assertEquals(false, $object->getSurname());
+  }
+
   /*
     ######## ##     ##    ###    #### ##       
     ##       ###   ###   ## ##    ##  ##       
@@ -199,6 +235,20 @@ class UserModelTest extends TestCase
     $this->assertEquals("\\\\n \\\\r \\\ \\' \\\"", $object->getEmail());
   }
 
+  public function testUserModelEmailReturnsTheLimitStringWithALimitText()
+  {
+    $object = new UserModel();
+    $object->setEmail($this->getATestText(254));
+    $this->assertEquals($this->getATestText(254), $object->getEmail());
+  }
+
+  public function testUserModelEmailReturnsFalseWithLargeText()
+  {
+    $object = new UserModel();
+    $object->setEmail($this->getATestText(255));
+    $this->assertEquals(false, $object->getEmail());
+  }
+
   /*
     ########     ###     ######   ######  
     ##     ##   ## ##   ##    ## ##    ## 
@@ -228,6 +278,27 @@ class UserModelTest extends TestCase
     $object = new UserModel();
     $object->setPassword(58);
     $this->assertIsString($object->getPassword());
+  }
+
+  public function testUserModelPasswordReturnsFalseWithAFalseValue()
+  {
+    $object = new UserModel();
+    $object->setPassword(false);
+    $this->assertEquals(false, $object->getPassword());
+  }
+
+  public function testUserModelPasswordReturnsSomethingWithALimitText()
+  {
+    $object = new UserModel();
+    $object->setPassword($this->getATestText(254));
+    $this->assertIsString($object->getPassword());
+  }
+
+  public function testUserModelPasswordReturnsFalseWithLargeText()
+  {
+    $object = new UserModel();
+    $object->setPassword($this->getATestText(255));
+    $this->assertEquals(false, $object->getPassword());
   }
 
   /*
@@ -296,6 +367,20 @@ class UserModelTest extends TestCase
     $this->assertEquals("\\\\n \\\\r \\\ \\' \\\"", $object->getRole());
   }
 
+  public function testUserModelRoleReturnsTheLimitStringWithALimitText()
+  {
+    $object = new UserModel();
+    $object->setRole($this->getATestText(19));
+    $this->assertEquals($this->getATestText(19), $object->getRole());
+  }
+
+  public function testUserModelRoleReturnsFalseWithLargeText()
+  {
+    $object = new UserModel();
+    $object->setRole($this->getATestText(20));
+    $this->assertEquals(false, $object->getRole());
+  }
+
   /* 
     #### ##     ##    ###     ######   ######## 
      ##  ###   ###   ## ##   ##    ##  ##       
@@ -359,5 +444,19 @@ class UserModelTest extends TestCase
     $object = new UserModel();
     $object->setImage("\\n \\r \\ ' \"");
     $this->assertEquals("\\\\n \\\\r \\\ \\' \\\"", $object->getImage());
+  }
+
+  public function testUserModelImageReturnsTheLimitStringWithALimitText()
+  {
+    $object = new UserModel();
+    $object->setImage($this->getATestText(254));
+    $this->assertEquals($this->getATestText(254), $object->getImage());
+  }
+
+  public function testUserModelImageReturnsFalseWithLargeText()
+  {
+    $object = new UserModel();
+    $object->setImage($this->getATestText(255));
+    $this->assertEquals(false, $object->getImage());
   }
 }

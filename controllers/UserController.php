@@ -1,8 +1,5 @@
 <?php
 
-use function Patchwork\CallRerouting\validate;
-use function YoastSEO_Vendor\GuzzleHttp\Psr7\str;
-
 require_once 'models/UserModel.php';
 
 class UserController
