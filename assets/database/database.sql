@@ -5,7 +5,7 @@ USE tienda_master;
 CREATE TABLE users(
   id        int(255) auto_increment NOT NULL,
   name      varchar(100) NOT NULL,
-  surname   varchar(255),
+  surname   varchar(255) NOT NULL,
   email     varchar(255) NOT NULL,
   password  varchar(255) NOT NULL,
   role      varchar(20),

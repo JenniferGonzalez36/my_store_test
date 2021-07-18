@@ -4,12 +4,17 @@ use PHPUnit\Framework\TestCase;
 
 class UserModelTest extends TestCase
 {
-
   private function getATestText($cuantityOfChars)
   {
     $result = '';
     for ($i = 0; $i < $cuantityOfChars; $i++) $result .= 'a';
     return $result;
+  }
+
+  public function testUserModelSaveReturnsFalseIfEverithingIsNull()
+  {
+    $object = new UserModel();
+    $this->assertFalse($object->save());
   }
 
   /* 
@@ -21,6 +26,13 @@ class UserModelTest extends TestCase
     ##   ### ##     ## ##     ## ##       
     ##    ## ##     ## ##     ## ######## 
   */
+
+  public function testUserModelNameReturnsNullIfNotDefined()
+  {
+    $object = new UserModel();
+    $this->assertNull($object->getName());
+  }
+
   public function testUserModelNameReturnsAStringWithString()
   {
     $object = new UserModel();
@@ -91,6 +103,16 @@ class UserModelTest extends TestCase
     $this->assertEquals(false, $object->getName());
   }
 
+  public function testUserModelSaveReturnsFalseIfNameIsWrong()
+  {
+    $object = new UserModel();
+    $object->setSurname('');
+    $object->setSurname('Hello');
+    $object->setEmail('Test@test.com');
+    $object->setPassword('Hello');
+    $this->assertFalse($object->save());
+  }
+
   /*
      ######  ##     ## ########  ##    ##    ###    ##     ## ######## 
     ##    ## ##     ## ##     ## ###   ##   ## ##   ###   ### ##       
@@ -100,6 +122,13 @@ class UserModelTest extends TestCase
     ##    ## ##     ## ##    ##  ##   ### ##     ## ##     ## ##       
      ######   #######  ##     ## ##    ## ##     ## ##     ## ########
   */
+
+  public function testUserModelSurnameReturnsNullIfNotDefined()
+  {
+    $object = new UserModel();
+    $this->assertNull($object->getSurname());
+  }
+
   public function testUserModelSurnameReturnsAStringWithString()
   {
     $object = new UserModel();
@@ -170,6 +199,16 @@ class UserModelTest extends TestCase
     $this->assertEquals(false, $object->getSurname());
   }
 
+  public function testUserModelSaveReturnsFalseIfSurnameIsWrong()
+  {
+    $object = new UserModel();
+    $object->setSurname('Hello');
+    $object->setSurname('');
+    $object->setEmail('Test@test.com');
+    $object->setPassword('Hello');
+    $this->assertFalse($object->save());
+  }
+
   /*
     ######## ##     ##    ###    #### ##       
     ##       ###   ###   ## ##    ##  ##       
@@ -179,6 +218,13 @@ class UserModelTest extends TestCase
     ##       ##     ## ##     ##  ##  ##       
     ######## ##     ## ##     ## #### ########
   */
+
+  public function testUserModelEmailReturnsNullIfNotDefined()
+  {
+    $object = new UserModel();
+    $this->assertNull($object->getEmail());
+  }
+
   public function testUserModelEmailReturnsAStringWithString()
   {
     $object = new UserModel();
@@ -249,6 +295,16 @@ class UserModelTest extends TestCase
     $this->assertEquals(false, $object->getEmail());
   }
 
+  public function testUserModelSaveReturnsFalseIfEmailIsWrong()
+  {
+    $object = new UserModel();
+    $object->setSurname('Hello');
+    $object->setSurname('Hello');
+    $object->setEmail('');
+    $object->setPassword('Hello');
+    $this->assertFalse($object->save());
+  }
+
   /*
     ########     ###     ######   ######  
     ##     ##   ## ##   ##    ## ##    ## 
@@ -258,6 +314,11 @@ class UserModelTest extends TestCase
     ##        ##     ## ##    ## ##    ## 
     ##        ##     ##  ######   ###### 
   */
+  public function testUserModelPasswordReturnsNullIfNotDefined()
+  {
+    $object = new UserModel();
+    $this->assertNull($object->getPassword());
+  }
 
   public function testUserModelPasswordReturnsAStringWithString()
   {
@@ -301,6 +362,16 @@ class UserModelTest extends TestCase
     $this->assertEquals(false, $object->getPassword());
   }
 
+  public function testUserModelSaveReturnsFalseIfPasswordIsWrong()
+  {
+    $object = new UserModel();
+    $object->setSurname('Hello');
+    $object->setSurname('Hello');
+    $object->setEmail('Test@test.com');
+    $object->setPassword('');
+    $this->assertFalse($object->save());
+  }
+
   /*
     ########   #######  ##       ######## 
     ##     ## ##     ## ##       ##       
@@ -310,6 +381,11 @@ class UserModelTest extends TestCase
     ##    ##  ##     ## ##       ##       
     ##     ##  #######  ######## ######## 
   */
+  public function testUserModelRoleReturnsNullIfNotDefined()
+  {
+    $object = new UserModel();
+    $this->assertNull($object->getRole());
+  }
 
   public function testUserModelRoleReturnsAStringWithString()
   {
@@ -390,6 +466,13 @@ class UserModelTest extends TestCase
      ##  ##     ## ##     ## ##    ##  ##       
     #### ##     ## ##     ##  ######   ########
   */
+
+  public function testUserModelImageReturnsNullIfNotDefined()
+  {
+    $object = new UserModel();
+    $this->assertNull($object->getImage());
+  }
+
   public function testUserModelImageReturnsAStringWithString()
   {
     $object = new UserModel();
@@ -459,4 +542,24 @@ class UserModelTest extends TestCase
     $object->setImage($this->getATestText(255));
     $this->assertEquals(false, $object->getImage());
   }
+
+
+
+  //I've tried using mocks in the next test but intelephense
+  // always detects errors even though the tests works fine.
+
+  /* //Warning! This test will create a user in the Database
+  public function testUserModelSaveReturnsTrueIfEverythingIsOk()
+  {
+    $object = new UserModel();
+    $object->setName('Hello');
+    $object->setSurname('Hello');
+    $object->setEmail('Test@test.com');
+    $object->setPassword('Hello');
+    $object->save();
+
+    $this->assertTrue($object->save());
+  } //Warning! This test will create a user in the Database
+
+  */
 }
