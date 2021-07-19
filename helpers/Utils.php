@@ -9,4 +9,19 @@ class Utils
       unset($_SESSION[$name]);
     }
   }
+
+  public static function isValidSession($name)
+  {
+    return (isset($_SESSION[$name]) && $_SESSION[$name]);
+  }
+
+  public static function goToTheMainPage()
+  {
+    self::goToThePage('');
+  }
+
+  public static function goToThePage($page)
+  {
+    header('Location:' . baseURL . $page);
+  }
 }

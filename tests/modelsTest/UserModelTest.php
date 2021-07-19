@@ -327,7 +327,7 @@ class UserModelTest extends TestCase
     $this->assertIsString($object->getPassword());
   }
 
-  public function testUserModelPasswordSameStringWithString()
+  public function testUserModelPasswordOtherStringWithString()
   {
     $object = new UserModel();
     $object->setPassword('Hello');
@@ -370,6 +370,85 @@ class UserModelTest extends TestCase
     $object->setEmail('Test@test.com');
     $object->setPassword('');
     $this->assertFalse($object->save());
+  }
+
+  /////////////////////////////////////////////////////////////////////
+
+  public function testUserModelUnencryptedPasswordReturnsAStringWithString()
+  {
+    $object = new UserModel();
+    $object->setPassword('Hello', false);
+    $this->assertIsString($object->getPassword());
+  }
+
+  public function testUserModelUnencryptedPasswordSameStringWithString()
+  {
+    $object = new UserModel();
+    $object->setPassword('Hello', false);
+    $this->assertEquals('Hello', $object->getPassword());
+  }
+
+  public function testUserModelUnencryptedPasswordReturnsStringWithANumber()
+  {
+    $object = new UserModel();
+    $object->setPassword(58, false);
+    $this->assertIsString($object->getPassword());
+  }
+
+  public function testUserModelUnencryptedPasswordReturnsStringWithANumberWithANumber()
+  {
+    $object = new UserModel();
+    $object->setPassword(58, false);
+    $this->assertEquals('58', $object->getPassword());
+  }
+
+  public function testUserModelUnencryptedPasswordReturnsFalseWithAFalseValue()
+  {
+    $object = new UserModel();
+    $object->setPassword(false, false);
+    $this->assertEquals(false, $object->getPassword());
+  }
+
+  public function testUserModelUnencryptedPasswordReturnsSomethingWithALimitText()
+  {
+    $object = new UserModel();
+    $object->setPassword($this->getATestText(254), false);
+    $this->assertEquals($this->getATestText(254), $object->getPassword());
+  }
+
+  public function testUserModelUnencryptedPasswordReturnsFalseWithLargeText()
+  {
+    $object = new UserModel();
+    $object->setPassword($this->getATestText(255), false);
+    $this->assertEquals(false, $object->getPassword());
+  }
+
+  public function testUserModelRoleUnencryptedPasswordReturnsAStringTrimedWithSpacedString()
+  {
+    $object = new UserModel();
+    $object->setPassword('  Hello     ', false);
+    $this->assertEquals('Hello', $object->getPassword());
+  }
+
+  public function testUserModelUnencryptedPasswordReturnsAnEmptyStringWithEmptyString()
+  {
+    $object = new UserModel();
+    $object->setPassword('', false);
+    $this->assertEquals('', $object->getPassword());
+  }
+
+  public function testUserModelUnencryptedPasswordReturnsAnEmptyStringWithSpacedString()
+  {
+    $object = new UserModel();
+    $object->setPassword('      ', false);
+    $this->assertEquals('', $object->getPassword());
+  }
+
+  public function testUserModelUnencryptedPasswordReturnsEscapedStringWithMaliciousString()
+  {
+    $object = new UserModel();
+    $object->setPassword("\\n \\r \\ ' \"", false);
+    $this->assertEquals("\\\\n \\\\r \\\ \\' \\\"", $object->getPassword());
   }
 
   /*

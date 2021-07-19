@@ -67,9 +67,11 @@ class UserModel
     $this->email = $this->validateValue($email);
   }
 
-  public function setPassword($password)
+  public function setPassword($password, $encrypt = true)
   {
-    $this->password = $this->validateValue($password) ? password_hash($this->validateValue($password), PASSWORD_BCRYPT, ['cost' => 4]) : false;
+    if ($encrypt)
+      $this->password = $this->validateValue($password) ? password_hash($this->validateValue($password), PASSWORD_BCRYPT, ['cost' => 4]) : false;
+    else $this->password = $this->validateValue($password);
   }
 
   public function setRole($role)
@@ -99,6 +101,21 @@ class UserModel
       $save = $this->db->query($sql);
       if ($save) $result = true;
     }
+    return $result;
+  }
+
+  public function login()
+  {
+    $result = false;
+    $sql = 'SELECT * FROM users WHERE email = "' . $this->email . '"';
+    $login = $this->db->query($sql);
+
+    if ($login && $login->num_rows === 1) {
+      $user = $login->fetch_object();
+      $verify = password_verify($this->password, $user->password);
+      if ($verify) $result = $user;
+    }
+
     return $result;
   }
 

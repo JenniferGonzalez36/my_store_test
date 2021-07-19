@@ -1,25 +1,36 @@
 <header>
   <div id="logo">
-    <a href="index.php">
-      <img src="<?= baseURL ?>/assets/img/T-shirt.png" alt="Camiseta-Logo">
+    <a href="<?= baseURL ?>">
+      <img src="<?= baseURL ?>assets/img/T-shirt.png" alt="Camiseta-Logo">
     </a>
 
-    <a href="index.php" id="title">Mi tienda.</a>
+    <a href="<?= baseURL ?>" id="title">Mi tienda.</a>
   </div>
   <nav id="nav-main-menu">
     <ul>
       <li>
-        <a href="#">Inicio</a>
+        <a href="<?= baseURL ?>">Inicio</a>
       </li>
       <li>
         <button>Categorías &#9660</button>
       </li>
-      <li>
-        <a href="#">Mi cuenta</a>
-      </li>
-      <li>
-        <a href="#" class="Shopping_cart-icon">🛒</a>
-      </li>
+      <?php if (Utils::isValidSession('identified')) : ?>
+        <li>
+          <a href="<?= baseURL ?>user/account">Mi cuenta</a>
+        </li>
+        <?php if (Utils::isValidSession('admin')) : ?>
+          <li>
+            <a href="#">Gestión</a>
+          </li>
+        <?php endif; ?>
+        <li>
+          <a href=" #" class="Shopping_cart-icon">🛒</a>
+        </li>
+      <?php else : ?>
+        <li>
+          <a href="<?= baseURL ?>user/login">Acceder</a>
+        </li>
+      <?php endif; ?>
     </ul>
   </nav>
 </header>

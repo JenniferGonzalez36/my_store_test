@@ -171,6 +171,13 @@ h2 {
   text-transform: uppercase;
 }
 
+h3 {
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  color: var(--darkgreen-color);
+  font-size: 1.2em;
+}
+
 p {
   padding: 10px;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -287,7 +294,7 @@ footer {
   box-shadow: 0 -10px 8px gray;
 }
 
-.user-register-block {
+.centered-form-block {
   margin: 10px;
   border-radius: 10px;
   border: 2px solid var(--blue-color);
@@ -303,14 +310,14 @@ footer {
   box-shadow: 0 0 5px var(--gray-color);
 }
 
-.user-register-block label {
+.centered-form-block label {
   font-family: Arial, Helvetica, sans-serif;
   font-weight: bold;
   color: var(--orange-color);
   font-size: 1.25em;
 }
 
-.user-register-block .input-data {
+.centered-form-block .input-data {
   margin-bottom: 10px;
   outline: none;
   border: 3px dashed var(--blue-color);
@@ -322,19 +329,19 @@ footer {
   letter-spacing: 1px;
 }
 
-.user-register-block .input-data:hover {
+.centered-form-block .input-data:hover {
   border-color: var(--orange-color);
   background-color: var(--lightblue-color);
 }
 
-.user-register-block .input-data:focus {
+.centered-form-block .input-data:focus {
   border-color: var(--orange-color);
   color: var(--darkgreen-color);
   background-color: var(--yellow-color);
   text-shadow: none;
 }
 
-.user-register-block .input-data::placeholder {
+.centered-form-block .input-data::placeholder {
   color: #bbc;
   font-weight: normal;
   letter-spacing: 0.15em;
@@ -342,11 +349,11 @@ footer {
   text-shadow: none;
 }
 
-.user-register-block .input-data:focus::placeholder {
+.centered-form-block .input-data:focus::placeholder {
   color: transparent;
 }
 
-.user-register-block input[type="submit"] {
+.centered-form-block input[type="submit"] {
   color: var(--white-color);
   background-color: var(--green-color);
   font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -359,12 +366,28 @@ footer {
   transition: background-color 100ms border 1s;
 }
 
-.user-register-block input[type="submit"]:hover {
+.centered-form-block input[type="submit"]:hover {
   background-color: var(--blue-color);
 }
 
-.user-register-block input[type="submit"]:active {
+.centered-form-block input[type="submit"]:active {
   background-color: var(--orange-color);
+}
+
+.last-link {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.last-link a {
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  align-self: center;
+  font-weight: bold;
+  font-size: 1.1em;
+  padding: 5px;
 }
 
 .color-red {
@@ -395,4 +418,11 @@ footer {
 .growed {
   font-weight: bold;
   font-size: 1.3em;
+}
+
+.last-link .close-session {
+  padding: 15px;
+  background: var(--white-color);
+  border-radius: 5px;
+  border: 3px solid #131;
 }

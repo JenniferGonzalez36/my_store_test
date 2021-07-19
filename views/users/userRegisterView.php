@@ -1,12 +1,9 @@
-<?php if (isset($_SESSION['register']) && $_SESSION['register'] == 'failed') : ?>
-  <p class="color-red centered growed">Registro fallido :(</p>
-<?php endif;
-Utils::deleteSession('register'); ?>
+<?php if (Utils::isValidSession('identified')) Utils::goToTheMainPage(); ?>
 
 <h2 class="centered decorated">Registrarse</h2>
 <div class="centered-content">
 
-  <form class="user-register-block" action="<?= baseURL ?>user/saveUser" method="POST">
+  <form class="centered-form-block" action="<?= baseURL ?>user/saveUser" method="POST">
     <label for="name">Nombre:</label>
     <input type="text" name="name" class="input-data" minlength="3" placeholder="3 letras mínimo" required>
 
@@ -25,4 +22,7 @@ Utils::deleteSession('register'); ?>
 
     <input type="submit" value="Registrarse">
   </form>
+</div>
+<div class="last-link">
+  <a href="<?= baseURL ?>user/login">¿Ya tienes una cuenta? Accede a ella aquí.</a>
 </div>

@@ -10,6 +10,23 @@ class UserController
     require_once "views/users/userRegisterView.php";
   }
 
+  public function login()
+  {
+    require_once "views/users/userLoginView.php";
+  }
+
+  public function account()
+  {
+    require_once "views/users/userAccountView.php";
+  }
+
+  public function logout()
+  {
+    Utils::deleteSession('admin');
+    Utils::deleteSession('identified');
+    Utils::goToTheMainPage();
+  }
+
   public function saveUser()
   {
     if (isset($_POST) && sizeof($_POST) > 0) {
@@ -34,14 +51,29 @@ class UserController
           else $_SESSION['register'] = 'failed';
         } else $_SESSION['register'] = 'failed';
       } else $_SESSION['register'] = 'failed';
-      if ($_SESSION['register'] == 'failed') header('Location:' . baseURL . 'user/register');
-      else header('Location:' . baseURL);
+      if ($_SESSION['register'] == 'failed') Utils::goToThePage('user/register');
+      else Utils::goToTheMainPage();
     } else $this->thereAreNoEasterEgg();
   }
 
-  public function test(): string
+  public function access()
   {
-    return "UserController is working fine.";
+    if (isset($_POST) && sizeof($_POST) > 0) {
+      $user = new UserModel();
+      $user->setEmail($this->getPostValue('email', 7, false, true));
+      $user->setPassword($this->getPostValue('password', 5, true), false);
+      $identifying = $user->login();
+
+      if ($identifying && is_object($identifying)) {
+        $_SESSION['identified'] = $identifying;
+        $_SESSION['login'] = 'complete';
+        if ($identifying->role == 'admin') $_SESSION['admin'] = true;
+        Utils::goToTheMainPage();
+      } else {
+        $_SESSION['login'] = 'failed';
+        Utils::goToThePage('/user/login');
+      }
+    } else $this->thereAreNoEasterEgg();
   }
 
   private function getPostValue($postValue, $minLength = 3, $canBeNumeric = false, $isAnEmail = false)
@@ -82,5 +114,10 @@ class UserController
     HTMLBuilder::createAPTag('There are no Easter Eggs up here.', 'color-red centered growed');
     echo
     HTMLBuilder::createAPTag('Go away.', 'color-red centered growed');
+  }
+
+  public function test(): string
+  {
+    return "UserController is working fine.";
   }
 }
